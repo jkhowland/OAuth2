@@ -160,7 +160,7 @@ open class OAuth2DataLoader: OAuth2Requestable {
 	open func attemptToAuthorize(callback: @escaping ((OAuth2JSON?, OAuth2Error?) -> Void)) {
 		if !isAuthorizing {
 			isAuthorizing = true
-			oauth2.authorize() { authParams, error in
+            oauth2.authorize(params: self.oauth2.clientConfig.customParameters) { authParams, error in
 				self.isAuthorizing = false
 				callback(authParams, error)
 			}
